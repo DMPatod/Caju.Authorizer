@@ -1,0 +1,6 @@
+@Caju.Authorizer.ApiServer_HostAddress = http://localhost:5059
+
+GET {{Caju.Authorizer.ApiServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

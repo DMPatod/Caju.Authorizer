@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DataPersistence\Migrations\" />
+    <Folder Include="DataPersistence\TypeConfigurators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Caju.Authorizer.Domain\Caju.Authorizer.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
