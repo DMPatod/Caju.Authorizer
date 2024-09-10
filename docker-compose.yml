@@ -6,13 +6,19 @@ services:
       ACCEPT_EULA: "Y"
     ports:
     - "1433:1433"
+    healthcheck:
+      test: [ "CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P SqlServerPW! -C -Q 'SELECT 1'"]
+      interval: 10s
+      retries: 3
+      start_interval: 30s
 
   tools-runner:
     build:
       context: .
       dockerfile: src/Caju.Authorizer.ToolsRunner/Dockerfile
     depends_on:
-      - sql-sever
+      sql-sever:
+        condition: service_healthy
     environment:
       ConnectionStrings__DefaultConnection: "Server=sql-sever; Database=Caju; User Id=sa; Password=SqlServerPW!; Trust Server Certificate=True"
 
@@ -21,7 +27,9 @@ services:
       context: .
       dockerfile: src/Caju.Authorizer.ApiServer/Dockerfile
     depends_on:
-      sql-sever:
+      tools-runner:
         condition: service_completed_successfully
     environment:
       ConnectionStrings__DefaultConnection: "Server=sql-sever; Database=Caju; User Id=sa; Password=SqlServerPW!; Trust Server Certificate=True"
+    ports:
+    - "5000:8080"
