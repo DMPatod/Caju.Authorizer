@@ -22,9 +22,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D67AE24-547F-43FE-AEA5-8370CC6EBDCE}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caju.Authorizer.ToolsRunner", "src\Caju.Authorizer.ToolsRunner\Caju.Authorizer.ToolsRunner.csproj", "{4BFF66A2-90BE-428F-A5EB-4DCD232F6354}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caju.Authorizer.ToolsRunner", "src\Caju.Authorizer.ToolsRunner\Caju.Authorizer.ToolsRunner.csproj", "{4BFF66A2-90BE-428F-A5EB-4DCD232F6354}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
