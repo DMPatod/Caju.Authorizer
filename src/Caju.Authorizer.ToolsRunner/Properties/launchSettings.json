@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Caju.Authorizer.ToolsRunner": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

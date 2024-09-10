@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Caju.Authorizer.Infrastructure.DataPersistence.SQLServer
 {
-    internal class SQLServerContext : DbContext, IDomainContext
+    public class SQLServerContext : DbContext, IDomainContext
     {
         private readonly IMessageHandler _messageHandler;
 

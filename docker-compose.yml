@@ -6,3 +6,22 @@ services:
       ACCEPT_EULA: "Y"
     ports:
     - "1433:1433"
+
+  tools-runner:
+    build:
+      context: .
+      dockerfile: src/Caju.Authorizer.ToolsRunner/Dockerfile
+    depends_on:
+      - sql-sever
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sql-sever; Database=Caju; User Id=sa; Password=SqlServerPW!; Trust Server Certificate=True"
+
+  authorizer:
+    build:
+      context: .
+      dockerfile: src/Caju.Authorizer.ApiServer/Dockerfile
+    depends_on:
+      sql-sever:
+        condition: service_completed_successfully
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sql-sever; Database=Caju; User Id=sa; Password=SqlServerPW!; Trust Server Certificate=True"
