@@ -78,6 +78,11 @@ namespace Caju.Authorizer.Domain.Accounts
 
         public void CommitTransaction(Transaction transaction, Guid transactionStamp)
         {
+            if (Id.ToString() != transaction.AccountId)
+            {
+                throw new Exception("Invalid account passed to commit transaction");
+            }
+
             if (ConcurrencyStamp != transactionStamp)
             {
                 throw new Exception("Concurrency exception");
@@ -104,6 +109,10 @@ namespace Caju.Authorizer.Domain.Accounts
                     AmountMeal -= transaction.Amount;
                     break;
                 default:
+                    if (AmountCash < transaction.Amount)
+                    {
+                        throw new Exception("Insufficient funds");
+                    }
                     AmountCash -= transaction.Amount;
                     break;
             }

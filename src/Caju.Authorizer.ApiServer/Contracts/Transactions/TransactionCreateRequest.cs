@@ -1,6 +1,6 @@
 ﻿namespace Caju.Authorizer.ApiServer.Contracts.Transactions
 {
-    public record TransactionPostRequest(
+    public record TransactionCreateRequest(
         string Account,
         double Amount,
         string Merchant,

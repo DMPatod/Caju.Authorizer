@@ -1,11 +1,12 @@
-﻿using Caju.Authorizer.Domain.Transactions.ValueObjects;
+﻿using Caju.Authorizer.Domain.Transactions.Entities;
+using Caju.Authorizer.Domain.Transactions.ValueObjects;
 using DDD.Core.DomainObjects;
 
 namespace Caju.Authorizer.Domain.Transactions
 {
     public class Transaction : AggregateRoot<TransactionId>
     {
-        public string Account { get; set; }
+        public string AccountId { get; set; }
 
         public double Amount { get; set; }
 
@@ -13,15 +14,17 @@ namespace Caju.Authorizer.Domain.Transactions
 
         public string MCC { get; set; }
 
+        public IReadOnlyCollection<TransactionIntent> TransactionIntents { get; } = [];
+
         private Transaction()
         {
             // For EF only.
         }
 
-        private Transaction(TransactionId id, string account, double amount, string merchant, string mcc)
+        internal Transaction(TransactionId id, string account, double amount, string merchant, string mcc)
             : base(id)
         {
-            Account = account;
+            AccountId = account;
             Amount = amount;
             Merchant = merchant;
             MCC = mcc;

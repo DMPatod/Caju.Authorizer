@@ -4,11 +4,10 @@ using DDD.Core.DomainObjects;
 
 namespace Caju.Authorizer.Domain.Transactions.Entities
 {
-    public class TransactionIntent : Entity<TransactionIntentId>
+    public class TransactionIntent
+        : Entity<TransactionIntentId>
     {
-        public TransactionIntentId Id { get; set; }
-
-        public Transaction Transaction { get; set; }
+        public Transaction Transaction { get; } = null!;
 
         public Guid ConcurrencyStamp { get; set; }
 
@@ -18,9 +17,19 @@ namespace Caju.Authorizer.Domain.Transactions.Entities
 
         public string MetaData { get; set; }
 
-        private TransactionIntent(TransactionIntentId id, Transaction transaction, Guid accountStamp, bool authorized, string message, string metaData)
+        private TransactionIntent()
         {
-            Id = id;
+            // For EF Only.
+        }
+
+        private TransactionIntent(TransactionIntentId id,
+                                  Transaction transaction,
+                                  Guid accountStamp,
+                                  bool authorized,
+                                  string message,
+                                  string metaData)
+            : base(id)
+        {
             Transaction = transaction;
             ConcurrencyStamp = accountStamp;
             Authorized = authorized;
@@ -30,9 +39,18 @@ namespace Caju.Authorizer.Domain.Transactions.Entities
             AddDomainEvent(new TransactionIntentCreatedEvent(this));
         }
 
-        public static TransactionIntent Create(Transaction transaction, Guid AccountStamp, bool authorized, string message, string metaData)
+        public static TransactionIntent Create(Transaction transaction,
+                                               Guid AccountStamp,
+                                               bool authorized,
+                                               string message,
+                                               string metaData)
         {
-            return new TransactionIntent(TransactionIntentId.Create(), transaction, AccountStamp, authorized, message, metaData);
+            return new TransactionIntent(TransactionIntentId.Create(),
+                                         transaction,
+                                         AccountStamp,
+                                         authorized,
+                                         message,
+                                         metaData);
         }
     }
 }

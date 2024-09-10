@@ -2,13 +2,22 @@
 using Caju.Authorizer.Domain.Transactions.Repositories;
 using Caju.Authorizer.Domain.Transactions.ValueObjects;
 
-namespace Caju.Authorizer.Infrastructure.DataPersistence.Pgsql.Repositories
+namespace Caju.Authorizer.Infrastructure.DataPersistence.SQLServer.Repositories
 {
     internal class TransactionRepository : ITransactionRepository
     {
-        public Task<Transaction> CreateAsync(Transaction transaction, CancellationToken cancellationToken = default)
+        private readonly SQLServerContext _context;
+
+        public TransactionRepository(SQLServerContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<Transaction> CreateAsync(Transaction entity, CancellationToken cancellationToken = default)
+        {
+            var ct = await _context.AddAsync(entity, cancellationToken);
+            await _context.SaveAsync(cancellationToken);
+            return ct.Entity;
         }
 
         public Task<Transaction?> FindAsync(TransactionId id, CancellationToken cancellationToken = default)

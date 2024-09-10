@@ -17,7 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caju.Authorizer.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caju.Authorizer.ApiServer", "src\Caju.Authorizer.ApiServer\Caju.Authorizer.ApiServer.csproj", "{E2FF1623-C3BC-440F-A580-E70DBBD9A7DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caju.Authorizer.Domain.UnitTest", "tests\Caju.Authorizer.Domain.UnitTest\Caju.Authorizer.Domain.UnitTest.csproj", "{4A815BAB-D455-4284-9C55-42BD2FAE2A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caju.Authorizer.Domain.UnitTest", "tests\Caju.Authorizer.Domain.UnitTest\Caju.Authorizer.Domain.UnitTest.csproj", "{4A815BAB-D455-4284-9C55-42BD2FAE2A3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D67AE24-547F-43FE-AEA5-8370CC6EBDCE}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

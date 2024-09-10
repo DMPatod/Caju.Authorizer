@@ -3,14 +3,14 @@ using Caju.Authorizer.Domain.Transactions;
 
 namespace Caju.Authorizer.Domain.UnitTest.Accounts
 {
-    public class AccountTest
+    public class AccountTests
     {
         [Fact]
         public void Commit_ShouldBe_Valid()
         {
             var account = Account.Create(1000, 1000, 1000);
 
-            var transaction = Transaction.Create("accountId", 100, "Padaria do Ze", "X");
+            var transaction = Transaction.Create(account.Id.ToString(), 100, "Padaria do Ze", "X");
 
             account.CommitTransaction(transaction, account.ConcurrencyStamp);
 
@@ -74,7 +74,7 @@ namespace Caju.Authorizer.Domain.UnitTest.Accounts
         {
             var account = Account.Create(1000, 1000, 1000);
 
-            var transaction = Transaction.Create("accountId", 100, "Restaurant", "5411");
+            var transaction = Transaction.Create(account.Id.ToString(), 100, "Restaurant", "5411");
 
             Assert.Throws<Exception>(() => account.CommitTransaction(transaction, Guid.NewGuid()));
         }
@@ -85,7 +85,7 @@ namespace Caju.Authorizer.Domain.UnitTest.Accounts
             var account = Account.Create(1000, 1000, 1000);
             var stampStr = account.ConcurrencyStamp.ToString();
 
-            var transaction = Transaction.Create("accountId", 100, "Restaurant", "5411");
+            var transaction = Transaction.Create(account.Id.ToString(), 100, "Restaurant", "5411");
 
             account.CommitTransaction(transaction, account.ConcurrencyStamp);
 

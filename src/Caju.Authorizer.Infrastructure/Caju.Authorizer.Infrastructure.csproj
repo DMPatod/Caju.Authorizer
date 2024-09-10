@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <Folder Include="DataPersistence\Migrations\" />
-    <Folder Include="DataPersistence\TypeConfigurators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
   </ItemGroup>
 
   <ItemGroup>

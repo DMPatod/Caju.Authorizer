@@ -7,7 +7,7 @@ using DDD.Core.Handlers.SHS.RD.CGC.Core.DomainEvents;
 
 namespace Caju.Authorizer.Application.Transactions.TransactionIntents
 {
-    internal class TransactionIntentCreatedEventHandler : IEventHandler<TransactionIntentCreatedEvent>
+    public class TransactionIntentCreatedEventHandler : IEventHandler<TransactionIntentCreatedEvent>
     {
         private readonly IMessageHandler _messageHandler;
         private readonly IAccountRepository _accountRepository;
@@ -30,7 +30,7 @@ namespace Caju.Authorizer.Application.Transactions.TransactionIntents
                 return;
             }
 
-            var accountIdStr = notification.Intent.Transaction.Account;
+            var accountIdStr = notification.Intent.Transaction.AccountId;
             var accountId = Guid.TryParse(accountIdStr, out var value) ? AccountId.Create(value) : throw new Exception("Invalid Account");
             var account = await _accountRepository.FindAsync(accountId, cancellationToken) ?? throw new Exception("Account not found");
 

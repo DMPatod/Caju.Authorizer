@@ -7,12 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Caju.Authorizer.Application\Caju.Authorizer.Application.csproj" />
     <ProjectReference Include="..\Caju.Authorizer.Domain\Caju.Authorizer.Domain.csproj" />
+    <ProjectReference Include="..\Caju.Authorizer.Infrastructure\Caju.Authorizer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
