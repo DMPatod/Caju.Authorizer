@@ -19,6 +19,10 @@ namespace Caju.Authorizer.Infrastructure.DataPersistence.TypeConfigurators
                     id => id.Value,
                     value => TransactionIntentId.Create(value));
 
+            builder.HasOne(t => t.Transaction)
+                .WithMany()
+                .IsRequired();
+
             builder.Property(t => t.ConcurrencyStamp);
 
             builder.Property(t => t.Authorized);

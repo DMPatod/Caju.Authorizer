@@ -22,7 +22,9 @@ namespace Caju.Authorizer.Infrastructure.DataPersistence.SQLServer.Repositories
 
         public async Task<ICollection<TransactionIntent>> FindAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Set<TransactionIntent>().ToListAsync(cancellationToken);
+            return await _context.Set<TransactionIntent>()
+                .Include(t => t.Transaction)
+                .ToListAsync(cancellationToken);
         }
     }
 }

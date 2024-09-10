@@ -14,8 +14,6 @@ namespace Caju.Authorizer.Domain.Transactions
 
         public string MCC { get; set; }
 
-        public IReadOnlyCollection<TransactionIntent> TransactionIntents { get; } = [];
-
         private Transaction()
         {
             // For EF only.

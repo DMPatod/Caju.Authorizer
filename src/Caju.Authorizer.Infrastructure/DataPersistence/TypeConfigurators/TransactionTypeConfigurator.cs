@@ -26,8 +26,6 @@ namespace Caju.Authorizer.Infrastructure.DataPersistence.TypeConfigurators
             builder.Property(t => t.Merchant);
 
             builder.Property(t => t.MCC);
-
-            builder.HasMany(t => t.TransactionIntents);
         }
     }
 }
